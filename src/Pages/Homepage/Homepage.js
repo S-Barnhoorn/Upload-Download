@@ -1,17 +1,29 @@
 import React, {useState} from 'react';
 import './styles.css'
+import {useHistory} from "react-router-dom";
+import { useForm } from "react-hook-form"
 
 const Homepage = () => {
 
     const [ checkbox, setCheckBox ] = useState('')
+    const history = useHistory();
+    const { handleSubmit } = useForm()
 
     function handleOnChange(e){
        setCheckBox(e.target.value)
     }
 
+    function onSubmit(){
+        if(checkbox === 'ide'){
+            history.push('/fileupload')
+        } else{
+            history.push('/singleupload')
+        }
+    }
+
     return (
         <div className="container">
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
             <h2>Upload-Download App</h2>
             <fieldset className="fieldset-container">
                 <legend>Choose Upload Method</legend>
