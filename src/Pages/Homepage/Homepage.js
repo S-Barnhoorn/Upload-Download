@@ -3,36 +3,36 @@ import './styles.css'
 import {useHistory} from "react-router-dom";
 import { useForm } from "react-hook-form"
 
-const Homepage = () => {
 
-    const [ checkbox, setCheckBox ] = useState('')
+
+const Homepage = ({check, setCheck}) => {
+
     const history = useHistory();
     const { handleSubmit } = useForm()
 
     function handleOnChange(e){
-       setCheckBox(e.target.value)
+       setCheck(e.target.value)
     }
 
     function onSubmit(){
-        if(checkbox === 'ide'){
-            history.push('/fileupload')
-        } else{
-            history.push('/singleupload')
+        if(check === 'IDE'){
+            history.push('/secondpage')
+        } else if(check === "Database"){
+            history.push('/secondpage')
         }
     }
 
     return (
         <div className="container">
             <form onSubmit={handleSubmit(onSubmit)}>
-            <h2>Upload-Download App</h2>
             <fieldset className="fieldset-container">
                 <legend>Choose Upload Method</legend>
                 <label htmlFor="checkbox1">
                     <input
                         type="radio"
                         id="checkbox1"
-                        value="database"
-                        checked={checkbox === "database"}
+                        value="Database"
+                        checked={check === "Database"}
                         onChange={handleOnChange}/>
                     Database
                 </label>
@@ -41,13 +41,12 @@ const Homepage = () => {
                     <input
                         type="radio"
                         id="checkbox2"
-                        value="ide"
-                        checked={checkbox === "ide"}
+                        value="IDE"
+                        checked={check === "IDE"}
                         onChange={handleOnChange}/>
                     IDE
                 </label>
-                <br/>
-                <button type="submit">Upload</button>
+                <button type="submit">Verder</button>
             </fieldset>
             </form>
         </div>

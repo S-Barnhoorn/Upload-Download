@@ -1,0 +1,19 @@
+.text-color {
+    color: white;
+}
+
+.single-upload__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+}
+
+.single-upload__fieldset{
+    display: flex;
+    width: 30vw;
+    justify-content: center;
+    align-items: center;
+
+}
