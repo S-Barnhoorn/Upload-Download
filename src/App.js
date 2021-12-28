@@ -38,7 +38,7 @@ function App() {
                 <Singleupload check={checkbox}/>
             </Route>
             <Route path='/multipleupload'>
-                <Multipleupload/>
+                <Multipleupload check={checkbox}/>
             </Route>
         </Switch>
 
