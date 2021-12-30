@@ -1,19 +1,22 @@
 .text-color {
-    color: white;
+    color: #e34c67;
 }
 
 .single-upload__container{
     display: flex;
     justify-content: center;
     align-items: center;
-
-    height: 100vh;
 }
+
+
 
 .single-upload__fieldset{
     display: flex;
-    width: 30vw;
     justify-content: center;
     align-items: center;
+
+    max-width: 50%;
+    border: 3px solid #e34c67;
+    color: #e34c67;
 
 }

@@ -18,6 +18,8 @@
 }
 
 .label-container{
+    display: flex;
+    flex-wrap: wrap;
     width: 15vw;
 }
 

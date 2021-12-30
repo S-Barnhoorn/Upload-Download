@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
 import {logDOM} from "@testing-library/react";
 
-const Multipleupload = ({check}) => {
+const Multipleupload = ({check, setBody}) => {
 
     const { handleSubmit } = useForm();
     const [ file, setFile ] = useState([]);
@@ -19,6 +19,8 @@ const Multipleupload = ({check}) => {
 
         let files = e.target.files;
 
+        setBody('body2')
+
         let output = document.getElementById('result')
         // let fileResult = Object.values(file)
 
@@ -31,9 +33,11 @@ const Multipleupload = ({check}) => {
                 let div = document.createElement('div');
                 div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" + "title='" + file.name + "'/>";
                 output.insertBefore(div, null);
+                console.log("test", picFile.result)
             });
             picReader.readAsDataURL(file);
         }
+
 
         // setMultipleFile(fileResult)
         //
@@ -76,7 +80,7 @@ const Multipleupload = ({check}) => {
     }
 
     return (
-        <div>
+        <div className="single-upload__container">
             <form onSubmit={handleSubmit(uploadFile)}>
                 {/*{console.log(handleImageChange.image)}*/}
                 {/*{console.log(url)}*/}
@@ -89,17 +93,17 @@ const Multipleupload = ({check}) => {
                            onChange={handleImageChange}
                     />
                     <output id="result"/>
-                    <div>
-                        {url ?
+                    {/*<div>*/}
+                    {/*    {url ?*/}
 
-                            <img src={url} alt=""/>
+                    {/*        <img src={url} alt=""/>*/}
 
-                            :
-                            <div>
+                    {/*        :*/}
+                    {/*        <div>*/}
 
-                            </div>
-                        }
-                    </div>
+                    {/*        </div>*/}
+                    {/*    }*/}
+                    {/*</div>*/}
                 </fieldset>
 
                 <button type="submit">Versturen</button>

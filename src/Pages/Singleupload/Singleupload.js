@@ -4,7 +4,7 @@ import {Link, useHistory} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import axios from 'axios';
 
-const Singleupload = ({check}) => {
+const Singleupload = ({check, setBody}) => {
 
     const { handleSubmit } = useForm();
     const [ file, setFile ] = useState([]);
@@ -16,6 +16,8 @@ const Singleupload = ({check}) => {
         let reader = new FileReader();
 
         let file = e.target.files[0];
+
+        setBody('body2')
 
         reader.onloadend = () => {
 

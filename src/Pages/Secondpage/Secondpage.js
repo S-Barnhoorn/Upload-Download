@@ -26,25 +26,25 @@ const Secondpage = ({check}) => {
                     <fieldset className="fieldset-container">
                         <legend>{check} Upload</legend>
                         <div className="label-container">
-                        <label htmlFor="checkbox1">
-                            <input
-                                type="radio"
-                                id="checkbox1"
-                                value="single"
-                                checked={uploadAmount === "single"}
-                                onChange={handleOnChange}/>
-                              Single Upload
-                        </label>
-                        <br/>
-                        <label htmlFor="checkbox2">
-                            <input
-                                type="radio"
-                                id="checkbox2"
-                                value="multiple"
-                                checked={uploadAmount === "multiple"}
-                                onChange={handleOnChange}/>
-                              Multiple Upload
-                        </label>
+                            <label htmlFor="checkbox1">
+                                <input
+                                    type="radio"
+                                    id="checkbox1"
+                                    value="single"
+                                    checked={uploadAmount === "single"}
+                                    onChange={handleOnChange}/>
+                                Single Upload
+                            </label>
+                            <br/>
+                            <label htmlFor="checkbox2">
+                                <input
+                                    type="radio"
+                                    id="checkbox2"
+                                    value="multiple"
+                                    checked={uploadAmount === "multiple"}
+                                    onChange={handleOnChange}/>
+                                Multiple Upload
+                            </label>
                         </div>
                         <button type="submit">Upload</button>
                     </fieldset>

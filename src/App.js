@@ -14,9 +14,10 @@ import Header from "./Components/Header/Header";
 function App() {
 
     const [ checkbox, setCheckBox ] = useState()
+    const [ body, setBody ] = useState('body')
 
   return (
-    <div className="body">
+    <div className={body}>
         <Header/>
         <NavLink to='/'/>
         <NavLink to='secondpage'/>
@@ -35,10 +36,10 @@ function App() {
                 <Fileupload/>
             </Route>
             <Route path='/singleupload'>
-                <Singleupload check={checkbox}/>
+                <Singleupload check={checkbox} setBody={setBody}/>
             </Route>
             <Route path='/multipleupload'>
-                <Multipleupload check={checkbox}/>
+                <Multipleupload check={checkbox} setBody={setBody}/>
             </Route>
         </Switch>
 
