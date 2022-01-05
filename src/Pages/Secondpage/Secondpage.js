@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useHistory} from "react-router-dom";
 import { useForm } from "react-hook-form"
 
-const Secondpage = ({check}) => {
+const Secondpage = ({check, setEndpoint}) => {
     const [ uploadAmount, setUploadAmount ] = useState('')
     const history = useHistory();
     const { handleSubmit } = useForm()
@@ -12,9 +12,17 @@ const Secondpage = ({check}) => {
     }
 
     function onSubmit(){
-        if(uploadAmount === 'single'){
+        if(uploadAmount === 'single' && check === "IDE"){
+            setEndpoint("http://localhost:8080/single/upload")
             history.push('/singleupload')
-        } else if(uploadAmount === 'multiple'){
+        } else if ( uploadAmount === 'single' && check === "Database") {
+            setEndpoint("http://localhost:8080/single/uploadDb")
+            history.push('/singleupload')
+        }else if(uploadAmount === 'multiple' && check === "IDE"){
+            setEndpoint("http://localhost:8080/multiple/upload")
+            history.push('/multipleupload')
+        } else if(uploadAmount === 'multiple' && check === "Database"){
+            setEndpoint("http://localhost:8080/multiple/upload/db")
             history.push('/multipleupload')
         }
     }

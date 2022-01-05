@@ -4,7 +4,7 @@ import {Link, useHistory} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import axios from 'axios';
 
-const Singleupload = ({check, setBody}) => {
+const Singleupload = ({check, setBody, endpoint}) => {
 
     const { handleSubmit } = useForm();
     const [ file, setFile ] = useState([]);
@@ -34,7 +34,7 @@ const Singleupload = ({check, setBody}) => {
 
             formData.append("file", file)
             try{
-                const result = await axios.post('http://localhost:8080/single/uploadDb', formData,
+                const result = await axios.post(`${endpoint}`, formData,
                     {
                         headers: {
                         "Content-Type": "multipart/form-data"

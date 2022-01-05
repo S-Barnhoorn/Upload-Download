@@ -13,7 +13,8 @@ import Header from "./Components/Header/Header";
 
 function App() {
 
-    const [ checkbox, setCheckBox ] = useState()
+    const [ checkbox, setCheckBox ] = useState('')
+    \const [ endpoint, setEndpoint ] = useState('')
     const [ body, setBody ] = useState('body')
 
   return (
@@ -30,16 +31,16 @@ function App() {
                 <Homepage check={checkbox} setCheck={setCheckBox}/>
             </Route>
             <Route path='/secondpage'>
-                <Secondpage check={checkbox} setCheck={setCheckBox}/>
+                <Secondpage check={checkbox} setCheck={setCheckBox} setEndpoint={setEndpoint}/>
             </Route>
             <Route path='/fileupload'>
                 <Fileupload/>
             </Route>
             <Route path='/singleupload'>
-                <Singleupload check={checkbox} setBody={setBody}/>
+                <Singleupload check={checkbox} setBody={setBody} endpoint={endpoint}/>
             </Route>
             <Route path='/multipleupload'>
-                <Multipleupload check={checkbox} setBody={setBody}/>
+                <Multipleupload check={checkbox} setBody={setBody} endpoint={endpoint}/>
             </Route>
         </Switch>
 

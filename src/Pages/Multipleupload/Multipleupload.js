@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
 import {logDOM} from "@testing-library/react";
 
-const Multipleupload = ({check, setBody}) => {
+const Multipleupload = ({check, setBody, endpoint}) => {
 
     const { handleSubmit } = useForm();
     const [ file, setFile ] = useState([]);
@@ -65,7 +65,7 @@ const Multipleupload = ({check, setBody}) => {
         }
 
         try{
-            const result = await axios.post('http://localhost:8080/multiple/upload/db', formData,
+            const result = await axios.post(`${endpoint}`, formData,
                 {
                     headers: {
                         "Content-Type": "multipart/form-data"
