@@ -13,11 +13,12 @@ const Multipleupload = ({check, setBody, endpoint}) => {
     const [ multipleFile, setMultipleFile ] = useState([])
     const history = useHistory();
 
-    let image = [];
-
     const handleImageChange = (e) => {
 
         let files = e.target.files;
+        console.log(files)
+        setMultipleFile(files)
+        console.log(multipleFile)
 
         setBody('body2')
 
@@ -33,7 +34,7 @@ const Multipleupload = ({check, setBody, endpoint}) => {
                 let div = document.createElement('div');
                 div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" + "title='" + file.name + "'/>";
                 output.insertBefore(div, null);
-                console.log("test", picFile.result)
+
             });
             picReader.readAsDataURL(file);
         }
@@ -60,9 +61,9 @@ const Multipleupload = ({check, setBody, endpoint}) => {
     async function uploadFile(){
         let formData = new FormData();
 
-        for (let i = 0; i < multipleFile.length; i++) {
-            formData.append(`image[${i}]`, multipleFile[i])
-        }
+        // for (let i = 0; i < multipleFile.length; i++) {
+        //     formData.append(`image[${i}]`, multipleFile[i])
+        // }
 
         try{
             const result = await axios.post(`${endpoint}`, formData,
