@@ -4,22 +4,69 @@
 
 .single-upload__container{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.single-upload__container2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-multiple{
+    margin: 10px;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 img{
-    max-height: 500px;
-    max-width: 500px;
+    max-height: 400px;
+    max-width: 400px;
+    padding: 10px;
 }
 
 .single-upload__fieldset{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 
-    max-width: 50%;
     border: 3px solid #e34c67;
     color: #e34c67;
-
 }
+
+/*.label{*/
+/*    height: auto;*/
+/*    width: 200px;*/
+/*    background-color:#e34c67;*/
+/*    color: white;*/
+/*    display: grid;*/
+/*    place-items: center;*/
+/*    font-size: 2.5rem ;*/
+/*    cursor: pointer;*/
+/*}*/
+
+input[type="file"]{
+    display: none;
+}
+
+.material-icons{
+    height: 100px;
+    width: 200px;
+    background-image: url("/src/assets/icons8-camera-64.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    color: transparent;
+    background-color:#e34c67;
+    overflow: hidden;
+}
+

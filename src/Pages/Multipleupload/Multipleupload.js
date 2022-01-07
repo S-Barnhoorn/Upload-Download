@@ -2,25 +2,29 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
-import {logDOM} from "@testing-library/react";
 
 const Multipleupload = ({check, setBody, endpoint}) => {
 
     const { handleSubmit } = useForm();
-    const [ file, setFile ] = useState([]);
-    const [ url, setUrl ] = useState([]);
+    const [ previewImage, setPreviewImage ] = useState('single-upload__container')
+    // const [ file, setFile ] = useState([]);
+    // const [ url, setUrl ] = useState([]);
+    const [ loading, setLoading ] = useState(false)
     const [ data, setData ] = useState([]);
     const [ multipleFile, setMultipleFile ] = useState([])
-    const history = useHistory();
-
-    let image = [];
+    // const history = useHistory();
 
     const handleImageChange = (e) => {
+
+
 
         let files = e.target.files;
         console.log(files)
         setMultipleFile(files)
+
+        setPreviewImage('single-upload__container2')
         setBody('body2')
+        setLoading(true)
 
         let output = document.getElementById('result')
         // let fileResult = Object.values(file)
@@ -32,7 +36,7 @@ const Multipleupload = ({check, setBody, endpoint}) => {
             picReader.addEventListener("load", function (event) {
                 let picFile = event.target;
                 let div = document.createElement('div');
-                div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" + "title='" + file.name + "'/>";
+                div.innerHTML = "<img alt='image preview' class='thumbnail' src='" + picFile.result + "'" + "title='" + file.name + "'/>";
                 output.insertBefore(div, null);
             });
             picReader.readAsDataURL(file);
@@ -56,16 +60,12 @@ const Multipleupload = ({check, setBody, endpoint}) => {
         //         }
     }
 
-useEffect(() => {
-    uploadFile()
-}, [endpoint])
-
     async function uploadFile(){
         let formData = new FormData();
 
-        multipleFile.forEach(file => {
-            formData.append('file', file)
-        })
+        // multipleFile.forEach(file => {
+        //     formData.append('file', file)
+        // })
 
         try{
             const result = await axios.post(`${endpoint}`, formData,
@@ -83,20 +83,27 @@ useEffect(() => {
     }
 
     return (
-        <div className="single-upload__container">
-            <form onSubmit={handleSubmit(uploadFile)}>
-                {console.log(multipleFile)}
+        <div className={previewImage}>
+            <label htmlFor="file" className="label">
+                <i className="material-icons">add_a_photo</i>
+            </label>
+
+            <form className="form-container" onSubmit={handleSubmit(uploadFile)}>
+                {loading? <button className="btn-multiple" type="submit">Versturen</button> : '' }
                 {/*{console.log(handleImageChange.image)}*/}
                 {/*{console.log(url)}*/}
-                <fieldset className="single-upload__fieldset">
-                    <legend>{check} Upload</legend>
+                {/*<fieldset className="single-upload__fieldset">*/}
+                {/*    <legend>{check} Upload</legend>*/}
                     <input className="text-color"
-
+                           id="file"
                            type="file" multiple
                            title=" "
                            onChange={handleImageChange}
                     />
+                <div className="result-container">
                     <output id="result"/>
+                </div>
+
                     {/*<div>*/}
                     {/*    {url ?*/}
 
@@ -108,9 +115,9 @@ useEffect(() => {
                     {/*        </div>*/}
                     {/*    }*/}
                     {/*</div>*/}
-                </fieldset>
+                {/*</fieldset>*/}
 
-                <button type="submit">Versturen</button>
+
             </form>
         </div>
     );
