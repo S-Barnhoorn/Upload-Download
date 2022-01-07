@@ -18,7 +18,8 @@ const Multipleupload = ({check, setBody, endpoint}) => {
     const handleImageChange = (e) => {
 
         let files = e.target.files;
-
+        console.log(files)
+        setMultipleFile(files)
         setBody('body2')
 
         let output = document.getElementById('result')
@@ -33,7 +34,6 @@ const Multipleupload = ({check, setBody, endpoint}) => {
                 let div = document.createElement('div');
                 div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" + "title='" + file.name + "'/>";
                 output.insertBefore(div, null);
-                console.log("test", picFile.result)
             });
             picReader.readAsDataURL(file);
         }
@@ -56,13 +56,16 @@ const Multipleupload = ({check, setBody, endpoint}) => {
         //         }
     }
 
+useEffect(() => {
+    uploadFile()
+}, [endpoint])
 
     async function uploadFile(){
         let formData = new FormData();
 
-        for (let i = 0; i < multipleFile.length; i++) {
-            formData.append(`image[${i}]`, multipleFile[i])
-        }
+        multipleFile.forEach(file => {
+            formData.append('file', file)
+        })
 
         try{
             const result = await axios.post(`${endpoint}`, formData,
@@ -82,6 +85,7 @@ const Multipleupload = ({check, setBody, endpoint}) => {
     return (
         <div className="single-upload__container">
             <form onSubmit={handleSubmit(uploadFile)}>
+                {console.log(multipleFile)}
                 {/*{console.log(handleImageChange.image)}*/}
                 {/*{console.log(url)}*/}
                 <fieldset className="single-upload__fieldset">

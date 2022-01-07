@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+img{
+    max-height: 500px;
+    max-width: 500px;
+}
 
 
 .single-upload__fieldset{
