@@ -17,7 +17,7 @@ const Singleupload = ({check, setBody, endpoint}) => {
 
         let file = e.target.files[0];
 
-        setBody('body2')
+        // setBody('body2')
 
         reader.onloadend = () => {
 

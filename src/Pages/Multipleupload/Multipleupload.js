@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
-import {logDOM} from "@testing-library/react";
 
 const Multipleupload = ({check, setBody, endpoint}) => {
 
@@ -20,10 +19,9 @@ const Multipleupload = ({check, setBody, endpoint}) => {
         setMultipleFile(files)
         console.log(multipleFile)
 
-        setBody('body2')
+        // setBody('body2')
 
         let output = document.getElementById('result')
-        // let fileResult = Object.values(file)
 
         for (let i = 0; i < files.length; i++) {
             let file = files[i];
@@ -61,10 +59,6 @@ const Multipleupload = ({check, setBody, endpoint}) => {
     async function uploadFile(){
         let formData = new FormData();
 
-        // for (let i = 0; i < multipleFile.length; i++) {
-        //     formData.append(`image[${i}]`, multipleFile[i])
-        // }
-
         try{
             const result = await axios.post(`${endpoint}`, formData,
                 {
@@ -88,7 +82,7 @@ const Multipleupload = ({check, setBody, endpoint}) => {
                 <fieldset className="single-upload__fieldset">
                     <legend>{check} Upload</legend>
                     <input className="text-color"
-
+                           id="inpFile"
                            type="file" multiple
                            title=" "
                            onChange={handleImageChange}
@@ -107,7 +101,11 @@ const Multipleupload = ({check, setBody, endpoint}) => {
                     {/*</div>*/}
                 </fieldset>
 
-                <button type="submit">Versturen</button>
+                <button
+                    id="btnUpload"
+                    type="submit">
+                    Versturen
+                </button>
             </form>
         </div>
     );
