@@ -10,6 +10,7 @@ const Singleupload = ({check, setBody, endpoint}) => {
     const [ file, setFile ] = useState([]);
     const [ url, setUrl ] = useState('');
     const [ data, setData ] = useState([]);
+    const [ loading, setLoading ] = useState(false)
     const history = useHistory();
 
     const handleImageChange = (e) => {
@@ -17,7 +18,12 @@ const Singleupload = ({check, setBody, endpoint}) => {
 
         let file = e.target.files[0];
 
+
         // setBody('body2')
+
+        setLoading(true);
+        setBody('body2')
+
 
         reader.onloadend = () => {
 
@@ -51,10 +57,16 @@ const Singleupload = ({check, setBody, endpoint}) => {
 
     return (
         <div className="single-upload__container">
+
+            <label htmlFor="file" className="label">
+                <i className="material-icons">add_a_photo</i>
+            </label>
             <form onSubmit={handleSubmit(uploadFile)}>
+                {loading? <button className="btn-multiple" type="submit">Versturen</button> : '' }
             <fieldset className="single-upload__fieldset">
                 <legend>{check} Upload</legend>
             <input className="text-color"
+                   id="file"
                 type="file"
                 title=" "
                 onChange={handleImageChange}
@@ -72,7 +84,6 @@ const Singleupload = ({check, setBody, endpoint}) => {
                 <div>
                     <a href={data.url} target="_blank">{data.fileName}</a>
                 </div>
-                <button type="submit">Versturen</button>
             </form>
         </div>
     );
