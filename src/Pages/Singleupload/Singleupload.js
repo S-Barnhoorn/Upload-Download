@@ -39,16 +39,17 @@ const Singleupload = ({check, setBody, endpoint}) => {
             let formData = new FormData();
 
             formData.append("file", file)
+
             try{
                 const result = await axios.post(`${endpoint}`, formData,
                     {
                         headers: {
                         "Content-Type": "multipart/form-data"
                         },
-                    file: formData
                     })
                 setData(result.data)
                 console.log(result)
+                console.log(formData)
             } catch(e){
                 console.error(e)
             }

@@ -20,13 +20,13 @@
     height: 100%;
     width: 100%;
     min-height: 100vh;
-    min-width: 100vw;}
+    min-width: 100vw;
 
-/*    background-image: url(assets/waves.svg);*/
-/*    background-position: center; !* Center the image *!*/
-/*    background-repeat: no-repeat; !* Do not repeat the image *!*/
-/*    background-size: cover; !* Resize the background image to cover the entire container *!*/
-/*}*/
+    background-image: url(assets/waves.svg);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
 
 html{
     margin-top: -21px;
