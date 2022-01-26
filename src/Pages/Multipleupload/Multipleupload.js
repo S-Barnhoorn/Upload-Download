@@ -15,9 +15,6 @@ const Multipleupload = ({check, setBody, endpoint}) => {
     // const history = useHistory();
 
     const handleImageChange = (e) => {
-
-
-
         let files = e.target.files;
         console.log(files)
         setMultipleFile(files)
@@ -26,8 +23,8 @@ const Multipleupload = ({check, setBody, endpoint}) => {
         setBody('body2')
         setLoading(true)
 
+
         let output = document.getElementById('result')
-        // let fileResult = Object.values(file)
 
         for (let i = 0; i < files.length; i++) {
             let file = files[i];
@@ -63,9 +60,12 @@ const Multipleupload = ({check, setBody, endpoint}) => {
     async function uploadFile(){
         let formData = new FormData();
 
-        // multipleFile.forEach(file => {
-        //     formData.append('file', file)
-        // })
+        Object.values(multipleFile).map((test) => {
+            formData.append('files', test)
+        })
+
+        // console.log(test)
+        // formData.append('files', test)
 
         try{
             const result = await axios.post(`${endpoint}`, formData,
@@ -73,10 +73,9 @@ const Multipleupload = ({check, setBody, endpoint}) => {
                     headers: {
                         "Content-Type": "multipart/form-data"
                     },
-                    files: formData
                 })
             setData(result.data)
-            console.log(result)
+            console.log(result.data)
         } catch(e){
             console.error(e)
         }
@@ -104,6 +103,10 @@ const Multipleupload = ({check, setBody, endpoint}) => {
                     <output id="result"/>
                 </div>
 
+                {data.map((test) => {
+
+                })}
+
                     {/*<div>*/}
                     {/*    {url ?*/}
 
@@ -116,7 +119,6 @@ const Multipleupload = ({check, setBody, endpoint}) => {
                     {/*    }*/}
                     {/*</div>*/}
                 {/*</fieldset>*/}
-
             </form>
         </div>
     );
