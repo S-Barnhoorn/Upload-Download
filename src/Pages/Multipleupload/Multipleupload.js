@@ -117,7 +117,6 @@ const Multipleupload = ({check, setBody, endpoint}) => {
                     {/*</div>*/}
                 {/*</fieldset>*/}
 
-
             </form>
         </div>
     );

@@ -57,29 +57,32 @@ const Singleupload = ({check, setBody, endpoint}) => {
             <label htmlFor="file" className="label">
                 <i className="material-icons">add_a_photo</i>
             </label>
-            <form onSubmit={handleSubmit(uploadFile)}>
-                {loading? <button className="btn-multiple" type="submit">Versturen</button> : '' }
-            <fieldset className="single-upload__fieldset">
-                <legend>{check} Upload</legend>
             <input className="text-color"
                    id="file"
-                type="file"
-                title=" "
-                onChange={handleImageChange}
+                   type="file"
+                   title=" "
+                   onChange={handleImageChange}
             />
-            <div>
-                {url ?
-                    <img src={url} alt="uploadImage"/>
-                    :
+            <form onSubmit={handleSubmit(uploadFile)}>
+                {loading? <>
+                    <button className="btn-multiple" type="submit">Versturen</button>
                     <div>
-
+                        <a className="link-location" href={data.url} target="_blank">{data.fileName}</a>
                     </div>
-                }
-            </div>
-            </fieldset>
-                <div>
-                    <a href={data.url} target="_blank">{data.fileName}</a>
-                </div>
+                    <fieldset className="single-upload__fieldset">
+                        <legend>{check} Upload</legend>
+                        <div>
+                            {url ?
+                                <img src={url} alt="uploadImage"/>
+                                :
+                                <div>
+
+                                </div>
+                            }
+                        </div>
+                    </fieldset>
+                </>: '' }
+
             </form>
         </div>
     );
