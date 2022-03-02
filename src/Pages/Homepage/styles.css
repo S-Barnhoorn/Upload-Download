@@ -9,12 +9,13 @@
 
 .fieldset-container{
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 
-    border: 3px solid #e34c67;
-    color: #e34c67;
+    border: 3px solid var(--color);;
+    color: var(--color);
 }
 
 .label-container{
@@ -49,7 +50,7 @@ input[type='radio']:checked:after {
     top: -2px;
     left: -1px;
     position: relative;
-    background-color: #e34c67;
+    background-color: var(--color);;
     content: '';
     display: inline-block;
     visibility: visible;
@@ -57,7 +58,7 @@ input[type='radio']:checked:after {
 }
 
 button {
-    background: linear-gradient(to right, #ef5f67, #e34c67);
+    background: linear-gradient(to right, #ef5f67, var(--color));
     color: white;
     --width: 100px;
     --height: calc(var(--width) / 3);

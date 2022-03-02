@@ -27,6 +27,7 @@ const Homepage = ({check, setCheck}) => {
             <form onSubmit={handleSubmit(onSubmit)}>
             <fieldset className="fieldset-container">
                 <legend>Choose Upload Method</legend>
+                <div className="label-container">
                 <label htmlFor="checkbox1">
                     <input
                         type="radio"
@@ -46,6 +47,7 @@ const Homepage = ({check, setCheck}) => {
                         onChange={handleOnChange}/>
                     IDE
                 </label>
+                </div>
                 <button type="submit">Verder</button>
             </fieldset>
             </form>

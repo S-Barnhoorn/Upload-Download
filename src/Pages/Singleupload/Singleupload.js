@@ -78,7 +78,7 @@ const Singleupload = ({check, setBody, endpoint}) => {
                         <legend>{check} Upload</legend>
                         <div>
                             {url ?
-                                <img src={url} alt="uploadImage"/>
+                                <img src={url} className="uploadImage" alt="uploadImage"/>
                                 :
                                 <div>
 
