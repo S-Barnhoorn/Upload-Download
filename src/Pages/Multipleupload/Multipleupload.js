@@ -5,59 +5,73 @@ import {useHistory} from "react-router-dom";
 
 const Multipleupload = ({check, setBody, endpoint}) => {
 
-    const { handleSubmit } = useForm();
-    const [ previewImage, setPreviewImage ] = useState('single-upload__container')
+    const {handleSubmit} = useForm();
+    const [previewImage, setPreviewImage] = useState('single-upload__container')
     // const [ file, setFile ] = useState([]);
-    // const [ url, setUrl ] = useState([]);
-    const [ loading, setLoading ] = useState(false)
-    const [ data, setData ] = useState([]);
-    const [ multipleFile, setMultipleFile ] = useState([])
+    const [url, setUrl] = useState([]);
+    const [loading, setLoading] = useState(false)
+    const [data, setData] = useState([]);
+    const [multipleFile, setMultipleFile] = useState([])
     // const history = useHistory();
+
+    // const handleImageChange2 = (e) => {
+    //     let reader = new FileReader();
+    //
+    //     let files = e.target.files;
+    //
+    //
+    //     // setBody('body2')
+    //
+    //     setLoading(true);
+    //     setBody('body2')
+    //
+    //
+    //     reader.onloadend = () => {
+    //
+    //         setFile(file);
+    //         setUrl(reader.result)
+    //
+    //     }
+    //
+    //     reader.readAsDataURL(file);
+    // }
 
     const handleImageChange = (e) => {
         let files = e.target.files;
-        console.log(files)
         setMultipleFile(files)
 
         setPreviewImage('single-upload__container2')
         setBody('body2')
-        setLoading(true)
+        setLoading(true);
+
+        let urlList = [];
 
 
-        let output = document.getElementById('result')
+        // let output = document.getElementById('result')
 
         for (let i = 0; i < files.length; i++) {
             let file = files[i];
-            let picReader = new FileReader()
+            let picReader = new FileReader();
 
-            picReader.addEventListener("load", function (event) {
-                let picFile = event.target;
-                let div = document.createElement('div');
-                div.innerHTML = "<img alt='image preview' class='thumbnail' src='" + picFile.result + "'" + "title='" + file.name + "'/>";
-                output.insertBefore(div, null);
-            });
+            picReader.onloadend = (event) => {
+                urlList.push(event.target.result);
+            }
+
+            // picReader.addEventListener("load", function (event) {
+            //     let picFile = event.target;
+            //     console.log('PICFILE', picFile)
+            //     let div = document.createElement('div');
+            //     div.innerHTML = "<img alt='image preview' class='thumbnail' src='" + picFile.result + "'" + "title='" + file.name + "'/>";
+            //     output.insertBefore(div, null);
+            // });
             picReader.readAsDataURL(file);
+            setLoading(false)
         }
-
-
-        // setMultipleFile(fileResult)
-        //
-        //         for (let i = 0; i < fileResult.length; i++) {
-        //             let reader = new FileReader();
-        //             let fileTest = e.target.files[i];
-        //             reader.onloadend = () => {
-        //
-        //                 setFile(fileTest.name);
-        //                 setUrl(reader.result);
-        //                 image.push(reader.result)
-        //                 // console.log(image)
-        //                 return image
-        //             }
-        //           reader.readAsDataURL(fileTest);
-        //         }
+        console.log('WAT IS DE LIJST', urlList)
+        setUrl(urlList);
     }
 
-    async function uploadFile(){
+    async function uploadFile() {
         let formData = new FormData();
 
         Object.values(multipleFile).map((test) => {
@@ -67,7 +81,7 @@ const Multipleupload = ({check, setBody, endpoint}) => {
         // console.log(test)
         // formData.append('files', test)
 
-        try{
+        try {
             const result = await axios.post(`${endpoint}`, formData,
                 {
                     headers: {
@@ -76,7 +90,7 @@ const Multipleupload = ({check, setBody, endpoint}) => {
                 })
             setData(result.data)
             console.log(result.data)
-        } catch(e){
+        } catch (e) {
             console.error(e)
         }
     }
@@ -86,38 +100,61 @@ const Multipleupload = ({check, setBody, endpoint}) => {
             <label htmlFor="file" className="label">
                 <i className="material-icons">add_a_photo</i>
             </label>
+            <input className="text-color"
+                   id="file"
+                   type="file" multiple
+                   title=" "
+                   onChange={handleImageChange}
+            />
+            {/*<output id='result'></output>*/}
 
             <form className="form-container" onSubmit={handleSubmit(uploadFile)}>
-                {loading? <button className="btn-multiple" type="submit">Versturen</button> : '' }
-                {/*{console.log(handleImageChange.image)}*/}
-                {/*{console.log(url)}*/}
+                {loading ?
+                    <p>Je moeder</p>
+                    : <>
+                        <fieldset className="single-upload__fieldset">
+                            <legend>{check} Upload</legend>
+                            <div className="result-container">
+                                <output id="result"/>
+                            </div>
+                        </fieldset>
+
+                        <button className="btn-multiple" type="submit">Versturen</button>
+                    </>
+                }
+
+                {url.length > 0 ?
+                    <>{url.map(test => {
+                        return (<img key={test} src={test} alt="hoi"/>)
+                       })}
+                    </>
+                    :
+                    <div>
+                        nee.
+                    </div>
+                }
+
                 {/*<fieldset className="single-upload__fieldset">*/}
                 {/*    <legend>{check} Upload</legend>*/}
-                    <input className="text-color"
-                           id="file"
-                           type="file" multiple
-                           title=" "
-                           onChange={handleImageChange}
-                    />
-                <div className="result-container">
-                    <output id="result"/>
-                </div>
+                {/*<div className="result-container">*/}
+                {/*    <output id="result"/>*/}
+                {/*</div>*/}
 
-                {data.map((test) => {
+                {/*/!*{data.map((test) => {*!/*/}
 
-                })}
+                {/*/!*})}*!/*/}
 
-                    {/*<div>*/}
-                    {/*    {url ?*/}
+                {/*    /!*<div>*!/*/}
+                {/*    /!*    {url ?*!/*/}
 
-                    {/*        <img src={url} alt=""/>*/}
+                {/*    /!*        <img src={url} alt=""/>*!/*/}
 
-                    {/*        :*/}
-                    {/*        <div>*/}
+                {/*    /!*        :*!/*/}
+                {/*    /!*        <div>*!/*/}
 
-                    {/*        </div>*/}
-                    {/*    }*/}
-                    {/*</div>*/}
+                {/*    /!*        </div>*!/*/}
+                {/*    /!*    }*!/*/}
+                {/*    /!*</div>*!/*/}
                 {/*</fieldset>*/}
             </form>
         </div>

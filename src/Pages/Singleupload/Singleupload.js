@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './styles.css';
 import {Link, useHistory} from "react-router-dom";
-import {useForm} from "react-hook-form";
+import {set, useForm} from "react-hook-form";
 import axios from 'axios';
 
 const Singleupload = ({check, setBody, endpoint}) => {
@@ -12,6 +12,7 @@ const Singleupload = ({check, setBody, endpoint}) => {
     const [ data, setData ] = useState([]);
     const [ loading, setLoading ] = useState(false)
     const history = useHistory();
+
 
     const handleImageChange = (e) => {
         let reader = new FileReader();
